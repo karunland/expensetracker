@@ -2,11 +2,16 @@
 
 import ExpenseItem from "@/app/components/ExpenseItem";
 import { useExpenseContext } from "@/app/contexts/ExpenseContext";
+import { use } from "react";
 import { Table, Card } from "react-bootstrap";
 
-export default function FilteredCategoryPage({ params }: { params: { id: string } }) {
-    const id = params.id;
+type PageParams = {
+    id: string;
+};
+
+export default function FilteredCategoryPage({ params }: { params: Promise<PageParams> }) {
     const { getExpensesbyCategoryId } = useExpenseContext();
+    const { id } = use(params);
     const expenses = getExpensesbyCategoryId(id);
 
     return (

@@ -3,14 +3,16 @@
 import { useExpenseContext } from '../../contexts/ExpenseContext';
 import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
+import { use } from 'react';
 
 type PageParams = {
     id: string;
 };
 
-export default function ExpenseDetail({ params }: { params: PageParams }) {
+export default function ExpenseDetail({ params }: { params: Promise<PageParams> }) {
     const { getExpenseById, getCategoryName } = useExpenseContext();
-    const expense = getExpenseById(params.id);
+    const { id } = use(params);
+    const expense = getExpenseById(id);
     const categoryName = getCategoryName(expense.categoryId);
 
     if (!expense) {
