@@ -8,7 +8,7 @@ type PageParams = {
     id: string;
 };
 
-export default function ExpenseDetail({ params }: { params: { id: string } }) {
+export default function ExpenseDetail({ params }: { params: PageParams }) {
     const { getExpenseById, getCategoryName } = useExpenseContext();
     const expense = getExpenseById(params.id);
     const categoryName = getCategoryName(expense.categoryId);
