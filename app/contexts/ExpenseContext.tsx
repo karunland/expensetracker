@@ -74,7 +74,6 @@ export const ExpenseProvider: React.FC<{ children: React.ReactNode }> = ({ child
       <option
         key={category.id}
         value={category.id}
-        selected={category.id === "1"}
       >
         {category.name}
       </option>
